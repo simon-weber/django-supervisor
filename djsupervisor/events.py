@@ -22,3 +22,11 @@ class CallbackModifiedHandler(PatternMatchingEventHandler):
             if not event.is_directory:
                 self.last_fired_time = now
                 self.callback()
+
+    def on_created(self, event):
+        super(CallbackModifiedHandler, self).on_created(event)
+        now = time.time()
+        if self.last_fired_time + self.repeat_delay < now:
+            if not event.is_directory:
+                self.last_fired_time = now
+                self.callback()
