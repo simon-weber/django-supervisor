@@ -66,7 +66,7 @@ Celery task daemon::
 
     [program:webserver]
     command={{ PYTHON }} {{ PROJECT_DIR }}/manage.py runserver --noreload
- 
+
     [program:celeryd]
     command={{ PYTHON }} {{ PROJECT_DIR }}/manage.py celeryd -l info
 
@@ -88,7 +88,7 @@ server when debugging but run under FCGI in production::
     {% else %}
     command={{ PYTHON }} {{ PROJECT_DIR }}/manage.py runfcgi host=127.0.0.1 port=8025
     {% endif %}
- 
+
 
 Usage
 -----
@@ -109,7 +109,7 @@ file shown in the previous section::
     2011-06-07 23:46:56,512 INFO success: celeryd entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
 
 By default the "supervisor" command will stay in the foreground and print
-status updates to the console.  Pass the --daemonize option to have it 
+status updates to the console.  Pass the --daemonize option to have it
 run in the background.  You can also tweak its behaviour using all of
 supervisord's standard options in the config file.
 
@@ -121,25 +121,25 @@ status and start/stop/restart individual processes::
     $ python myproject/manage.py supervisor shell
     celeryd                          RUNNING    pid 4799, uptime 0:03:17
     webserver                        RUNNING    pid 4801, uptime 0:03:17
-    supervisor> 
+    supervisor>
     supervisor> help
 
     default commands (type help <topic>):
     =====================================
-    add   clear fg       open quit   remove restart  start  stop update 
+    add   clear fg       open quit   remove restart  start  stop update
     avail exit  maintail pid  reload reread shutdown status tail version
 
-    supervisor> 
+    supervisor>
     supervisor> stop celeryd
     celeryd: stopped
-    supervisor> 
+    supervisor>
     supervisor> status
     celeryd                          STOPPED    Jun 07 11:51 PM
     webserver                        RUNNING    pid 4801, uptime 0:04:45
-    supervisor> 
+    supervisor>
 
 
-You can also issue individual process-manangement commands directly on the 
+You can also issue individual process-manangement commands directly on the
 command-line::
 
     $ python myproject/manage.py supervisor start celeryd
@@ -198,8 +198,8 @@ configuration file contains the following variables::
 
     PYTHON               full path to the current python interpreter.
 
-    SUPERVISOR_OPTIONS   the command-line options passed to manage.py. 
- 
+    SUPERVISOR_OPTIONS   the command-line options passed to manage.py.
+
     settings             the Django settings module, as seen by your code.
 
     environ              the os.environ dict, as seen by your code.
@@ -285,7 +285,7 @@ option to false::
     [program:non-python-related]
     autoreload=false
 
-To switch off the autoreload process entirely, you can pass the --noreload 
+To switch off the autoreload process entirely, you can pass the --noreload
 option to supervisor or just exclude it in your project config file like so::
 
     [program:autoreload]
@@ -294,9 +294,9 @@ option to supervisor or just exclude it in your project config file like so::
 """
 
 __ver_major__ = 0
-__ver_minor__ = 4
+__ver_minor__ = 5
 __ver_patch__ = 0
-__ver_sub__ = ""
+__ver_sub__ = "dev0"
 __version__ = "%d.%d.%d%s" % (__ver_major__,__ver_minor__,__ver_patch__,__ver_sub__)
 
 
